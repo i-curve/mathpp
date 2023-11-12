@@ -9,8 +9,14 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
-# 是否开启 test 开关
-option(MATHPP_TEST "build mathpp tests" on)
+set(MATHPP_MASTER_PROJECT OFF)
+option(MATHPP_TEST "build mathpp tests" OFF) # 是否开启 test 开关
+
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  set(MATHPP_MASTER_PROJECT ON)
+  option(MATHPP_TEST "build mathpp tests" on)
+  message(STATUS "CMake version: ${CMAKE_VERSION}")
+endif()
 
 include(GNUInstallDirs)
 
